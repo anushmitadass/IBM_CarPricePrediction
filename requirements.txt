@@ -1,0 +1,34 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Car Price Prediction — Python Dependencies
+# Author : Anushmita Das
+# Project: AnushmitaDas_CarPricePrediction.ipynb
+#
+# Install all dependencies with:
+#   pip install -r requirements.txt
+#
+# After installing, enable the ipywidgets frontend extension:
+#   jupyter nbextension enable --py widgetsnbextension --sys-prefix
+#   # OR for JupyterLab:
+#   jupyter labextension install @jupyter-widgets/jupyterlab-manager
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Jupyter / Notebook Runtime ────────────────────────────────────────────────
+notebook>=7.0.0
+ipykernel>=6.0.0
+
+# ── Core Data Libraries ───────────────────────────────────────────────────────
+numpy>=1.24.0
+pandas>=2.0.0
+
+# ── Visualisation ─────────────────────────────────────────────────────────────
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# ── Machine Learning ──────────────────────────────────────────────────────────
+scikit-learn>=1.3.0
+
+# ── Interactive Frontend (in-notebook UI) ─────────────────────────────────────
+ipywidgets>=8.0.0
+
+# ── Model Persistence ─────────────────────────────────────────────────────────
+joblib>=1.3.0
