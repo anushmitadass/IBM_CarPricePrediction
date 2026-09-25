@@ -1,171 +1,168 @@
 # 🚗 Car Price Prediction
 
-> A complete machine learning project that predicts the selling price of a car based on its technical specifications, using a full scikit-learn pipeline and an interactive ipywidgets-based frontend — all inside a Jupyter Notebook.
+**Author:** Anushmita Das  
+**Dataset:** UCI Automobile Dataset (`carprice.csv`)  
+**Notebook:** `AnushmitaDas_CarPricePrediction.ipynb`  
+**Script:** `AnushmitaDas_CarPricePrediction.py`
 
 ---
 
-## 📋 Project Description
+## Project Description
 
-This project solves a **supervised regression problem**: given 25 features that describe a car (make, engine type, horsepower, dimensions, fuel type, etc.), predict its **market price in USD**.
+This project builds a complete end-to-end machine learning pipeline to predict the **market price of an automobile** based on its technical and categorical attributes. The problem is framed as a **supervised regression task**: given 25 input features describing a car, the model outputs a predicted selling price in USD.
 
-The workflow covers every stage of a real-world ML project:
-
-- **Exploratory Data Analysis (EDA)** — distributions, correlations, categorical breakdowns
-- **Data Preprocessing** — handling `?` missing values, median/mode imputation, `StandardScaler`, `OneHotEncoder`, all wrapped in a `ColumnTransformer` pipeline
-- **Feature Engineering** — feature importance ranking via Extra Trees
-- **Model Comparison** — 10 algorithms evaluated with 5-fold cross-validation and held-out test metrics (R², MAE, RMSE, MAPE)
-- **Hyperparameter Tuning** — `GridSearchCV` on the best-performing Random Forest
-- **Interactive Frontend** — `ipywidgets` form that lets you dial in any car spec and get a live price prediction without leaving the notebook
+The project covers the full data science lifecycle — raw data ingestion, exploratory analysis, preprocessing, feature engineering, multi-model comparison, hyperparameter tuning, and an interactive prediction interface — entirely within a single Jupyter Notebook.
 
 ---
 
-## 📁 Project Files
+## Dataset
+
+| Property | Value |
+|---|---|
+| Source | [UCI Machine Learning Repository — Automobile Dataset](https://archive.ics.uci.edu/ml/datasets/automobile) |
+| File | `carprice.csv` |
+| Rows | 199 |
+| Features | 25 input features + 1 target (`price`) |
+| Era | Mid-1980s automobiles |
+| Missing values | Encoded as `?` (replaced with NaN before modelling) |
+
+---
+
+## Technologies Used
+
+| Category | Library / Tool |
+|---|---|
+| Language | Python 3.8+ |
+| Data manipulation | pandas, NumPy |
+| Visualisation | Matplotlib, Seaborn |
+| Machine learning | scikit-learn |
+| Interactive UI | ipywidgets |
+| Model persistence | joblib |
+| Notebook environment | Jupyter Notebook / JupyterLab |
+
+---
+
+## Project Structure
 
 ```
 zoosense/
-├── AnushmitaDas_CarPricePrediction.ipynb   ← Main notebook (all code + UI)
-├── dashboard.html                           ← ✨ Standalone frontend dashboard (open in browser)
-├── carprice.csv                             ← Dataset
-├── car_price_model.pkl                      ← Saved trained model (generated on run)
-├── car_price_preprocessor.pkl               ← Saved preprocessor  (generated on run)
-└── README.md                                ← This file
+├── carprice.csv                          # Raw dataset
+├── AnushmitaDas_CarPricePrediction.ipynb # Main Jupyter Notebook
+├── AnushmitaDas_CarPricePrediction.py    # Python script version
+├── AnushmitaDas_ProjectReport.docx       # Full project report
+├── requirements.txt                      # Python dependencies
+└── README.md                             # This file
 ```
 
----
-
-## 📊 Dataset
-
-| Property | Detail |
-|----------|--------|
-| **Source** | [UCI Machine Learning Repository — Automobile Dataset](https://archive.ics.uci.edu/ml/datasets/automobile) |
-| **File** | `carprice.csv` | 'https://drive.google.com/file/d/12wXFiS7b9JY0jcuHBSqTmwKIy0JET9Ly/view?usp=sharing'
-| **Rows** | 199 cars |
-| **Columns** | 26 (25 features + 1 target) |
-| **Target** | `price` (continuous, USD) |
-| **Missing values** | Encoded as `?` — replaced with `NaN` and imputed |
-
-### Key Features
-
-| Feature | Type | Description |
-|---------|------|-------------|
-| `make` | Categorical | Car manufacturer (e.g. toyota, bmw) |
-| `fuel-type` | Categorical | `gas` / `diesel` |
-| `body-style` | Categorical | sedan, hatchback, convertible … |
-| `drive-wheels` | Categorical | fwd / rwd / 4wd |
-| `engine-size` | Numeric | Displacement in cc |
-| `horsepower` | Numeric | Engine power output |
-| `curb-weight` | Numeric | Vehicle weight in lbs |
-| `city-mpg` | Numeric | Fuel efficiency (city) |
-| `highway-mpg` | Numeric | Fuel efficiency (highway) |
-| `price` | **Target** | Market price in USD |
+> After running the notebook, two additional files are saved:
+> - `car_price_model.pkl` — trained final model
+> - `car_price_preprocessor.pkl` — fitted preprocessing pipeline
 
 ---
 
-## 🛠️ Technologies Used
+## Setup & Run Instructions
 
-| Layer | Library / Tool | Purpose |
-|-------|---------------|---------|
-| **Language** | Python 3.x | Core language |
-| **Data** | pandas, numpy | Data loading, manipulation |
-| **Visualisation** | matplotlib, seaborn | EDA charts, evaluation plots |
-| **ML** | scikit-learn | Pipelines, models, metrics, GridSearchCV |
-| **Frontend / UI** | ipywidgets | Interactive in-notebook prediction form |
-| **Dashboard** | HTML + Chart.js | Standalone browser dashboard (`dashboard.html`) |
-| **Persistence** | joblib | Save/load model and preprocessor |
-| **Environment** | Jupyter Notebook | Notebook runtime |
-
-### Models Compared
-
-Linear Regression · Ridge · Lasso · ElasticNet · K-Nearest Neighbours · Decision Tree · **Random Forest** · Gradient Boosting · Extra Trees · SVR
-
----
-
-## ⚙️ Setup & Run Instructions
-
-### Prerequisites
-
-- Python 3.8 or higher
-- `pip` package manager
-- Jupyter Notebook or JupyterLab
-
-### 1 — Clone / download the project
-
-Place all files in the same directory so `carprice.csv` is next to the notebook.
-
-### 2 — Install dependencies
+### 1. Clone / download the repository
 
 ```bash
-pip install numpy pandas matplotlib seaborn scikit-learn ipywidgets joblib notebook
+git clone <repo-url>
+cd zoosense
 ```
 
-Enable the ipywidgets extension (needed for the interactive frontend):
+### 2. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Enable ipywidgets extension (for the interactive predictor)
 
 ```bash
 jupyter nbextension enable --py widgetsnbextension --sys-prefix
-# OR for JupyterLab:
-jupyter labextension install @jupyter-widgets/jupyterlab-manager
 ```
 
-### 3 — Launch Jupyter
+### 4. Launch the notebook
 
 ```bash
 jupyter notebook AnushmitaDas_CarPricePrediction.ipynb
 ```
 
-### 4 — Run the notebook
+### 5. Run all cells
 
-Select **Kernel → Restart & Run All** to execute every cell from top to bottom.
+Select **Kernel → Restart & Run All**.  
+The interactive prediction form appears in **Section 10**.
 
-After execution:
-- All EDA charts and model metrics will be rendered inline.
-- `car_price_model.pkl` and `car_price_preprocessor.pkl` will be saved to the working directory.
-- The **interactive prediction form** (Section 10) will appear — use the sliders and dropdowns to configure a car, then click **🔮 Predict Price**.
+### Alternative — run as a plain Python script
+
+```bash
+python AnushmitaDas_CarPricePrediction.py
+```
+
+> Note: the ipywidgets interactive frontend is only available in the notebook version.
 
 ---
 
-## 📈 Key Results
+## Pipeline Summary
+
+| Step | Description |
+|---|---|
+| 1 — Load & Inspect | Read CSV, check shape/types/nulls, replace `?` with NaN |
+| 2 — EDA | 8 visualisations: distributions, correlations, categorical breakdowns |
+| 3 — Preprocessing | Median imputation + StandardScaler (numeric); Mode imputation + OneHotEncoder (categorical) via ColumnTransformer |
+| 4 — Feature Engineering | ExtraTreesRegressor feature importance ranking (top 20) |
+| 5 — Model Training | 10 algorithms trained with 5-fold cross-validation |
+| 6 — Evaluation | R², RMSE, MAE, MAPE + Actual vs Predicted + Residual plots |
+| 7 — Tuning | GridSearchCV on Random Forest (240 fits) |
+| 8 — Persistence | Save model & preprocessor as `.pkl` files |
+| 9 — Interactive UI | ipywidgets form for live predictions in-notebook |
+
+---
+
+## Models Trained
+
+- Linear Regression
+- Ridge Regression
+- Lasso Regression
+- ElasticNet
+- K-Nearest Neighbours
+- Decision Tree
+- **Random Forest** ← best baseline
+- Gradient Boosting
+- Extra Trees
+- Support Vector Regression (SVR)
+
+---
+
+## Key Results
 
 | Metric | Value (Tuned Random Forest) |
-|--------|----------------------------|
-| **Test R²** | ~0.95+ |
-| **Test MAE** | ~$1,000–$1,500 |
-| **Test RMSE** | ~$1,500–$2,200 |
-| **Test MAPE** | ~8–12% |
+|---|---|
+| Test R² | ~0.95 |
+| Test MAE | ~$1,000–$1,500 |
+| Test RMSE | ~$1,500–$2,000 |
+| Test MAPE | ~8–12% |
 
-> *Exact values depend on the random state and train/test split.*
-
-**Top predictive features:** `engine-size`, `curb-weight`, `horsepower`, `highway-mpg`, `city-mpg`, `width`
+> Exact values vary slightly with each run due to the stochastic nature of Random Forest.
 
 ---
 
-## 🖼️ Notebook Sections at a Glance
+## Key Findings
 
-```
-1.  Import Libraries
-2.  Load & Inspect Dataset
-3.  Exploratory Data Analysis (EDA)
-    ├─ 3.1 Price Distribution
-    ├─ 3.2 Average Price by Make
-    ├─ 3.3 Correlation Heatmap
-    ├─ 3.4 Top Correlated Features
-    ├─ 3.5 Scatter Plots vs Price
-    ├─ 3.6 Price by Body Style / Fuel Type
-    └─ 3.7 Categorical Count Plots
-4.  Data Preprocessing
-5.  Feature Engineering & Selection
-6.  Model Training  (10 algorithms)
-7.  Model Evaluation (R², MAE, RMSE, MAPE + charts)
-8.  Hyperparameter Tuning (GridSearchCV on Random Forest)
-9.  Final Model & Sample Predictions
-10. Interactive Frontend (ipywidgets)
-```
+- **Engine size**, **curb weight**, and **horsepower** are the strongest predictors (Pearson r > 0.80 with price).
+- **City-MPG** and **highway-MPG** are strongly *negatively* correlated with price (r ≈ −0.70).
+- **Make (brand)** is a powerful categorical predictor — BMW, Porsche, and Mercedes-Benz command significantly higher prices.
+- Tree-based ensembles consistently outperform linear models on this dataset.
+- GridSearchCV tuning improved CV R² by ~1–2% over the default Random Forest.
 
 ---
 
-## 👩‍💻 Author
+## References
 
-**Anushmita Das**
-
----
-
-*Dataset source: UCI Machine Learning Repository — [Automobile Data Set](https://archive.ics.uci.edu/ml/datasets/automobile)*
+1. [UCI Machine Learning Repository — Automobile Dataset](https://archive.ics.uci.edu/ml/datasets/automobile)
+2. [scikit-learn Documentation](https://scikit-learn.org/stable/)
+3. [pandas Documentation](https://pandas.pydata.org/docs/)
+4. [Matplotlib Documentation](https://matplotlib.org/stable/contents.html)
+5. [Seaborn Documentation](https://seaborn.pydata.org/)
+6. [ipywidgets Documentation](https://ipywidgets.readthedocs.io/)
+7. Breiman, L. (2001). Random Forests. *Machine Learning*, 45(1), 5–32.
+8. Pedregosa et al. (2011). Scikit-learn: Machine Learning in Python. *JMLR* 12, 2825–2830.
