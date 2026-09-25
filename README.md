@@ -20,7 +20,7 @@ The project covers the full data science lifecycle — raw data ingestion, explo
 | Property | Value |
 |---|---|
 | Source | [UCI Machine Learning Repository — Automobile Dataset](https://archive.ics.uci.edu/ml/datasets/automobile) |
-| File | `carprice.csv` |
+| File | `carprice.csv` | 'https://drive.google.com/file/d/12wXFiS7b9JY0jcuHBSqTmwKIy0JET9Ly/view?usp=sharing'
 | Rows | 199 |
 | Features | 25 input features + 1 target (`price`) |
 | Era | Mid-1980s automobiles |
